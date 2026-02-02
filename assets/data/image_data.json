@@ -1,0 +1,21 @@
+[
+  {
+    "id" : 1,
+    "image" : "assets/images/Rectangle 462.png",
+    "tile": "Switzerland",
+    "body" : "from $699"
+  },
+  {
+    "id" : 2,
+    "image" : "assets/images/Rectangle 463.png",
+    "tile": "Switzerland",
+    "body" : "from $699"
+  },
+  {
+    "id" : 3,
+    "image" : "assets/images/Rectangle 462.png",
+    "tile": "Switzerland",
+    "body" : "from $699"
+  }
+
+]
