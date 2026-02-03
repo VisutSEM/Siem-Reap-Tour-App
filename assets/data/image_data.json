@@ -3,19 +3,22 @@
     "id" : 1,
     "image" : "assets/images/Rectangle 462.png",
     "tile": "Switzerland",
-    "body" : "from $699"
+    "body" : "from $699",
+    "rating" : 5
   },
   {
     "id" : 2,
     "image" : "assets/images/Rectangle 463.png",
     "tile": "Ilulissat Icefjord",
-    "body" : "from $699"
+    "body" : "from $699",
+    "rating" : 3
   },
   {
-    "id" : 3,
+    "id" : 2,
     "image" : "assets/images/Rectangle 462.png",
     "tile": "Switzerland",
-    "body" : "from $699"
+    "body" : "from $699",
+    "rating" : 4
   }
 
 ]
