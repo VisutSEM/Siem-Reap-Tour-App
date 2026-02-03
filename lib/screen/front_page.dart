@@ -73,97 +73,66 @@ class FrontPage extends StatelessWidget {
           SizedBox(height: 10),
           // Fixed horizontal list
           SizedBox(
-            height: 200,
+            height: 138,
             child: Obx(() {
-              // Check if loading
               if (imgControl.isLoading.value) {
-                return Center(
-                  child: CircularProgressIndicator(color: Colors.blueAccent),
-                );
+                return CircularProgressIndicator(color: kBgColor);
               }
-
-              // Check if empty
               if (imgControl.imgCtr.isEmpty) {
-                return Center(child: Text("No locations available"));
+                return Center(child: Text("No data"));
               }
-
-              // Return the ListView
               return ListView.builder(
                 scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: 16),
                 itemCount: imgControl.imgCtr.length,
                 itemBuilder: (context, index) {
-                  final imgModel = imgControl.imgCtr[index];
-
-                  return Container(
-                    margin: EdgeInsets.only(right: 16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 5,
+                  final ImgModel = imgControl.imgCtr[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 19),
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                      child: Container(
+                        width: 230,
+                        height: 138,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 1,
+                              spreadRadius: 1,
+                              color: Colors.grey,
+                              offset: Offset(1, 4),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    height: 200,
-                    width: 160,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Image
-                        ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            topRight: Radius.circular(16),
-                          ),
-                          child: Image.asset(
-                            imgModel.image,
-                            height: 120,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                height: 120,
-                                color: Colors.grey[300],
-                                child: Icon(
-                                  Icons.image_not_supported,
-                                  size: 50,
-                                  color: Colors.grey,
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        // Content
-                        Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                imgModel.title,
+                        child: Stack(
+                          children: [
+                            Image.asset(ImgModel.image, fit: BoxFit.cover),
+                            Positioned(
+                              bottom: 26,
+                              left: 10,
+                              child: Text(
+                                ImgModel.title,
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                imgModel.body,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey,
+                                  fontSize: 22,
+                                  color: kWhiteColor,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            Positioned(
+                              bottom: 14,
+                              left: 10,
+                              child: Text(
+                                ImgModel.body,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: kWhiteColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   );
                 },
