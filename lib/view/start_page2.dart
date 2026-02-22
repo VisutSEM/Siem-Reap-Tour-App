@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:siem_reap_tour/screen/front_page.dart';
+import 'package:siem_reap_tour/view/start_page3.dart';
 
 import '../const/colors.dart';
 
-class StartPage3 extends StatelessWidget {
-  const StartPage3({super.key});
+class StartPage2 extends StatelessWidget {
+  const StartPage2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +16,12 @@ class StartPage3 extends StatelessWidget {
           children: [
             SizedBox(height: 100),
             Image.asset(
-              'assets/images/Beach_Monochromatic 1.png',
+              'assets/images/Group 6932.png',
               width: 406,
               height: 306,
             ),
             Text(
-              "High-end leisure projects\n          to choose from",
+              "Customize your\n High-end travel",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w500,
@@ -31,7 +31,7 @@ class StartPage3 extends StatelessWidget {
             SizedBox(height: 30),
             Center(
               child: Text(
-                "The world's first-class modern leisure\n            and entertainment method",
+                "  Countless high-end\nentertainment facilities",
                 style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
             ),
@@ -40,7 +40,7 @@ class StartPage3 extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => FrontPage()),
+                  MaterialPageRoute(builder: (context) => StartPage3()),
                 );
               },
               child: CircleAvatar(
