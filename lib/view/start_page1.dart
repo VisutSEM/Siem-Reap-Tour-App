@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:siem_reap_tour/const/colors.dart';
-import 'package:siem_reap_tour/screen/start_page2.dart';
+import 'package:siem_reap_tour/view/start_page2.dart';
 
 class StartPage1 extends StatelessWidget {
   const StartPage1({super.key});

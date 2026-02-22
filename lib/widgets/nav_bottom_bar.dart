@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:siem_reap_tour/const/colors.dart';
-import 'package:siem_reap_tour/screen/front_page.dart';
+import 'dart:ui';
 
-import '../view/guide_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:siem_reap_tour/const/colors.dart';
+import '../view/favorite_screen.dart';
+import '../view/front_page.dart';
+import '../view/profile_screen.dart';
+import '../view/search_sceen.dart';
 
 class NavigateBottomBar extends StatefulWidget {
   const NavigateBottomBar({Key? key}) : super(key: key);
@@ -18,10 +20,9 @@ class _NavigateBottomBarState extends State<NavigateBottomBar> {
   // Define your pages/screens here - ADD ALL YOUR SCREENS
   final List<Widget> _pages = [
     FrontPage(),
-    SearchPage(),
-    FavoritesPage(),
-    ProfilePage(),
-    GuideScreen(),
+    SearchScreen(),
+    FavoriteScreen(),
+    ProfileScreen(),
   ];
 
   @override
@@ -42,43 +43,46 @@ class _NavigateBottomBarState extends State<NavigateBottomBar> {
                 padding: const EdgeInsets.all(16.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
-                  child: Container(
-                    width: 400,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.08),
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border.all(
-                        color: kWhiteColor.withOpacity(0.2),
-                        width: 1.5,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                    child: Container(
+                      width: 400,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(40),
+                        border: Border.all(
+                          color: kWhiteColor.withOpacity(0.2),
+                          width: 1.5,
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          _buildNavItem(
-                            icon: Icons.home,
-                            label: "Home",
-                            index: 0,
-                          ),
-                          _buildNavItem(
-                            icon: Icons.search,
-                            label: "Search",
-                            index: 1,
-                          ),
-                          _buildNavItem(
-                            icon: Icons.favorite,
-                            label: "Favorites",
-                            index: 2,
-                          ),
-                          _buildNavItem(
-                            icon: Icons.person,
-                            label: "Profile",
-                            index: 3,
-                          ),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _buildNavItem(
+                              icon: Icons.home,
+                              label: "Home",
+                              index: 0,
+                            ),
+                            _buildNavItem(
+                              icon: Icons.search,
+                              label: "Search",
+                              index: 1,
+                            ),
+                            _buildNavItem(
+                              icon: Icons.bookmark_add,
+                              label: "Favorites",
+                              index: 2,
+                            ),
+                            _buildNavItem(
+                              icon: Icons.person,
+                              label: "Profile",
+                              index: 3,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -113,63 +117,21 @@ class _NavigateBottomBarState extends State<NavigateBottomBar> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: isSelected ? kWhiteColor : Colors.grey, size: 24),
+            Icon(
+              icon,
+              color: isSelected ? kWhiteColor : Colors.yellow,
+              size: 24,
+            ),
             const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? kWhiteColor : Colors.grey,
+                color: isSelected ? kWhiteColor : Colors.yellow,
                 fontSize: 10,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// Placeholder pages
-class SearchPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBgColor,
-      body: Center(
-        child: Text(
-          'Search Page',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-class FavoritesPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBgColor,
-      body: Center(
-        child: Text(
-          'Favorites Page',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
-    );
-  }
-}
-
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBgColor,
-      body: Center(
-        child: Text(
-          'Profile Page',
-          style: TextStyle(color: Colors.white, fontSize: 24),
         ),
       ),
     );
