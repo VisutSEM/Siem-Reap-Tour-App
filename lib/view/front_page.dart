@@ -8,21 +8,55 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:siem_reap_tour/api/fetch_api.dart';
 import 'package:siem_reap_tour/const/colors.dart';
+import 'package:siem_reap_tour/models/image_model.dart';
 
 import 'detail_screen.dart';
 
 class FrontPage extends StatefulWidget {
-  const FrontPage({super.key});
+  FrontPage({super.key});
 
   @override
   State<FrontPage> createState() => _FrontPageState();
 }
 
+List<ImageModel> allProducts = [];
+List<ImageModel> filterProducts = [];
+bool isLoading = true;
+
 class _FrontPageState extends State<FrontPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadProducts();
+  }
+
+  void loadProducts() async {
+    allProducts = (await FetchApi()) as List<ImageModel>;
+    setState(() {
+      filterProducts = allProducts;
+      isLoading = false;
+    });
+  }
+
+  void search(String query) async {
+    List<ImageModel> results = [];
+    if (query.isEmpty) {
+      results = allProducts;
+    } else {
+      results = allProducts
+          .where((p) => p.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      filterProducts = results;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
@@ -31,8 +65,8 @@ class _FrontPageState extends State<FrontPage> {
             Stack(
               alignment: Alignment.center,
               children: [
-                CircleAvatar(radius: 25, backgroundColor: Colors.green),
-                Icon(Icons.person),
+                CircleAvatar(radius: 25, backgroundColor: Colors.black),
+                Icon(Icons.person, color: Colors.white),
               ],
             ),
             SizedBox(width: 5),
@@ -40,6 +74,7 @@ class _FrontPageState extends State<FrontPage> {
               child: Padding(
                 padding: const EdgeInsets.all(4),
                 child: TextField(
+                  onChanged: search,
                   autocorrect: true,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
@@ -62,10 +97,10 @@ class _FrontPageState extends State<FrontPage> {
                 height: 50,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                  border: Border.all(color: kWhiteColor.withOpacity(0.5)),
+                  color: Colors.black,
+                  border: Border.all(color: Colors.green.withOpacity(0.5)),
                 ),
-                child: Icon(Icons.notifications_none),
+                child: Icon(Icons.notifications_none, color: Colors.white),
               ),
             ),
           ],
@@ -89,7 +124,7 @@ class _FrontPageState extends State<FrontPage> {
                   Get.to(DetailScreen(data: data));
                 },
                 child: Card(
-                  color: Colors.transparent,
+                  color: Colors.white60,
                   margin: EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,7 +140,7 @@ class _FrontPageState extends State<FrontPage> {
                         overflow: TextOverflow.ellipsis,
                         data.title,
                         style: TextStyle(
-                          color: kWhiteColor,
+                          color: Colors.black,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
@@ -113,7 +148,7 @@ class _FrontPageState extends State<FrontPage> {
                       Text(
                         overflow: TextOverflow.ellipsis,
                         data.description,
-                        style: TextStyle(fontSize: 10, color: kWhiteColor),
+                        style: TextStyle(fontSize: 10, color: Colors.black),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -123,7 +158,7 @@ class _FrontPageState extends State<FrontPage> {
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
-                            color: kWhiteColor,
+                            color: Colors.red,
                           ),
                         ),
                       ),

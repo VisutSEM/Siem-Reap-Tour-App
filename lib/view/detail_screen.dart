@@ -38,161 +38,170 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
 
-      body: Center(
-        child: Stack(
-          children: [
-            Column(
-              children: [
-                Hero(
-                  tag: widget.data.id,
-                  child: Image.network(
-                    widget.data.image,
-                    width: 320,
-                    height: 320,
-                  ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(
-                    widget.data.title,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.white,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Hero(
+                    tag: widget.data.id,
+                    child: Image.network(
+                      widget.data.image,
+                      width: 320,
+                      height: 320,
                     ),
                   ),
-                ),
-                Text(
-                  textAlign: TextAlign.center,
-                  widget.data.description,
-                  style: TextStyle(fontSize: 17, color: Colors.white),
-                ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        width: 200,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(60),
-                          color: Colors.green,
-                        ),
-                        child: Text(
-                          '\$${totalPrice.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Text(
+                      widget.data.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black,
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    spacing: 8,
-                    children: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Colors.green),
-                        ),
-                        onPressed: minimize,
-                        child: Text(
-                          '-',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                  Text(
+                    textAlign: TextAlign.center,
+                    widget.data.description,
+                    style: TextStyle(fontSize: 17, color: Colors.black),
+                  ),
+                  SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          width: 200,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(60),
+                            color: Colors.green,
+                          ),
+                          child: Text(
+                            '\$${totalPrice.toStringAsFixed(2)}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 24,
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        "${currentIndex.toString()}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 28,
-                          color: Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(Colors.green),
-                        ),
-                        onPressed: add,
-                        child: Text(
-                          '+',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      spacing: 8,
+                      children: [
+                        ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: WidgetStatePropertyAll(
                               Colors.green,
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: minimize,
                           child: Text(
-                            'Buy',
-                            style: TextStyle(fontSize: 20, color: Colors.white),
+                            '-',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Positioned(
-              left: 20,
-              top: 40,
-              child: Row(
-                spacing: 270,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.back(result: NavigateBottomBar());
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(Icons.arrow_back_ios),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(Icons.favorite_border),
+                        Text(
+                          "${currentIndex.toString()}",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28,
+                            color: Colors.white,
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: WidgetStatePropertyAll(
+                              Colors.green,
+                            ),
+                          ),
+                          onPressed: add,
+                          child: Text(
+                            '+',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: WidgetStatePropertyAll(
+                                Colors.green,
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              'Buy',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            ),
-          ],
+              Positioned(
+                left: 20,
+                top: 40,
+                child: Row(
+                  spacing: 270,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back(result: NavigateBottomBar());
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Icon(Icons.arrow_back_ios),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Icon(Icons.favorite_border),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
