@@ -119,14 +119,14 @@ class _NavigateBottomBarState extends State<NavigateBottomBar> {
           children: [
             Icon(
               icon,
-              color: isSelected ? kWhiteColor : Colors.yellow,
+              color: isSelected ? kWhiteColor : Colors.black,
               size: 24,
             ),
             const SizedBox(height: 4),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? kWhiteColor : Colors.yellow,
+                color: isSelected ? kWhiteColor : Colors.black,
                 fontSize: 10,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               ),
